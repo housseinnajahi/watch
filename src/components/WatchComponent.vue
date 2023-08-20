@@ -70,7 +70,7 @@ export default class WatchComponent extends Vue {
   public resetPosition() {
     this.watchStyle = {
       left: '0px',
-      top: '°px',
+      top: '0px',
       transform: `rotate(0deg)`
     };
     this.rotation = 0;

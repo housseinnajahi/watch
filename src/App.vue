@@ -32,7 +32,7 @@
       <div class="col-lg-4 col-md-6 col-sm-12 px-4">
         <div class="input-group mb-3">
           <p style="margin-top:8px;margin-right:20px">Angle: </p>
-          <input type="number" v-model="angle" class="form-control" placeholder="x">
+          <input type="number" v-model="angle" class="form-control" placeholder="angle">
         </div>
       </div>
       <div class="col-lg-4 col-md-6 col-sm-12 px-4">
@@ -64,13 +64,13 @@ export default class App extends Vue {
   watches!: Watch[]
   selectedTimezone!: string;
   timezones = timezones;
-  watchPositionX = 0;
-  watchPositionY = 0;
-  pivotPositionX = 0;
-  pivotPositionY = 0;
-  scalingX = 0;
-  scalingY = 0;
-  angle = 0
+  watchPositionX = "";
+  watchPositionY = "";
+  pivotPositionX = "";
+  pivotPositionY = "";
+  scalingX = "";
+  scalingY = "";
+  angle = "";
 
 
   created() {
@@ -86,11 +86,11 @@ export default class App extends Vue {
   public createWatch() {
     let watch = new Watch(
       this.selectedTimezone,
-      new Vector2D(this.watchPositionX, this.watchPositionY),
-      new Vector2D(this.pivotPositionX, this.pivotPositionY),
-      this.scalingX,
-      this.scalingY,
-      this.angle
+      new Vector2D(isNaN(parseInt(this.watchPositionX)) ? 0 : parseInt(this.watchPositionX), isNaN(parseInt(this.watchPositionY)) ? 0 : parseInt(this.watchPositionY)),
+      new Vector2D(isNaN(parseInt(this.pivotPositionX)) ? 0 : parseInt(this.pivotPositionX), isNaN(parseInt(this.pivotPositionY)) ? 0 : parseInt(this.pivotPositionY)),
+      isNaN(parseInt(this.scalingX)) ? 0 : parseInt(this.scalingX),
+      isNaN(parseInt(this.scalingY)) ? 0 : parseInt(this.scalingY),
+      isNaN(parseInt(this.angle)) ? 0 : parseInt(this.angle)
     );
     this.watches.push(watch);
     this.$forceUpdate();
